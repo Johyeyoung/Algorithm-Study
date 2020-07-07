@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<algorithm>
 int RGB[1001][3];// RGB 값이 3개이 때문에 범위 1000의 3개를 잡음 0 = r, 1 = g, 2 = 로 생각  틀림 --> 필요 없음
 int dp[1001][3] = { 0 };
 int min(int a, int b) {
@@ -7,14 +6,6 @@ int min(int a, int b) {
 }
 
 
-int min(int a, int b, int c) {
-    if (a < b)
-        return a < c ? a : c;
-    else
-    {
-        return b < c ? b : c;
-    }
-}
 
 
 int main()
