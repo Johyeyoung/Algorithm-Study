@@ -1,29 +1,47 @@
-#include <iostream>
-#include <algorithm>
+#include<stdio.h>
+#include<algorithm>
 using namespace std;
+/*
+int dp[101][100001];//dp 이용
+int wv[101][100001];//상품의  1차 시도는 무게 가치를 같이 구현 해봄 실패
+*/
+//int N, K; //크기와 가치
+int dp[10001]; // 최종 값이 가치의 값이 기 때문에 1차원 사용
+int w[101]; //무게 
+int v[101]; // 가치
 
-int main() {
+int N, K;
+/*
+int max(int a, int b) {
+	return a > b ? a : b;
+}
+*/
 
-	int N, K;
-	cin >> N >> K; // 물품의 수, 버틸수 있는 무게
+int main()
+{
 
-	int dp[100001] = { 0, };
-
-
-	int W, V; // 무게, 가치
-	for (int i = 0; i < N; i++) {
-		cin >> W >> V;
-		for (int j = K; j >= 1; j--) {  //중복을 제거하기 위해 뒤에서부터 계산한다.
-			if (j >= W) {
-				dp[j] = max(dp[j - W] + V, dp[j]);
-				// cout << j << ": "<<dp[j] << endl; 
-			}
-		}
+	
+	scanf_s("%d %d", &N, &K);
+	
+	
+	for (int i = 1; i <= N; i++)
+	{
+		scanf_s("%d %d", &w[i], &v[i]);
 	}
-
-	cout << dp[K];
-
-
+    
+	for (int i = 1; i <= N; i++)
+	{
+		for (int j = K; j >=1; j--)
+		{
+			if (w[i]<=j) { //물건을 넣을 수 있을 때만 
+				dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
+			}
+			
+			
+		}
+		
+	}
+	printf("%d\n", dp[K]);
 
 	return 0;
 }
