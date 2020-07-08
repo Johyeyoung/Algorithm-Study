@@ -11,7 +11,7 @@ int main() {
 
 	for (i = 0; i < N; i++)
 	{
-		dp[i] = 1; //ÃÊ±â°ªÀ» 1·Î ÁöÁ¤
+		dp[i] = 1; //ÃƒÃŠÂ±Ã¢Â°ÂªÃ€Â» 1Â·ÃŽ ÃÃ¶ÃÂ¤
 		
 		scanf_s("%d", &arr[i]);
 		for (j = 0; j < i; j++)
@@ -25,4 +25,4 @@ int main() {
 			max = dp[i];
 	}
 	printf("%d", max);
-}
+} 
