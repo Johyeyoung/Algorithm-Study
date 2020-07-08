@@ -32,7 +32,7 @@ int main()
 				dp[i] = dp[j] + arr[i]; 
 			}
 		}
-
+ 
 		if (result < dp[i]) result = dp[i];
 		
 	}
