@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<string.h>
+#define MIN(a, b) (((a) < (b)) ? (a) : (b));
+int N;
+int start;
+int dp[16][65536];
+int w[14][17];
+const int temp = 1000000000;
+
+int TSP(int n, int visit) {//n은 현재 위치, 방문 위치
+
+	
+	
+	
+	if (visit == (1 << N) - 1) {
+		if (w[n][0] != 0) {
+			return w[n][start]?w[n][start]:temp;
+		}
+		
+	}
+	int & res = dp[n][visit];
+	if (res != -1) return res;
+	
+
+	for (int i = 0; i < N; i++)
+	{
+		if ((visit & (1 << i)))//i 번째 방문을 환익하기 위한 bit 연산
+		{
+			if(visit &(1<<i))continue;
+			if (w[n][i] == 0)continue;
+			res = MIN(res, TSP(i, visit | (1 << i)) + w[n][i]);
+		}
+		
+	}
+	return res;
+}
+
+
+int main()
+
+{
+	scanf_s("%d", &N);
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+			scanf_s("%d", &w[i][j]);
+	}
+	memset(dp, -1, sizeof(dp));
+	printf("%d", TSP(0, 1));
+
+}
