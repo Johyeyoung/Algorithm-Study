@@ -1,34 +1,28 @@
-#include<stdio.h>
-int RGB[1001][3];// RGB 값이 3개이 때문에 범위 1000의 3개를 잡음 0 = r, 1 = g, 2 = 로 생각  틀림 --> 필요 없음
-int dp[1001][3] = { 0 };
-int min(int a, int b) {
-    return a < b ? a : b;
-}
+#include <iostream>
+#include <algorithm>
+using namespace std;
 
+// 이전 집의 페인트 값 중 현재 집에 칠할 색을 제외한 min값 + 현재 집 페인트 값
 
+int main() {
+	int N; cin >> N;
+	int arr[1001][3] = {{0, }};
+	int dp[1001][3] = {{0, }};;
 
-
-int main()
-{
-	int i, num;
-	int rgb[3] = { 0 };
-	
-	scanf_s("%d", &num);
-	scanf_s("%d %d %d", &rgb[0], &rgb[1], &rgb[2]); //rgb 값 순서대로 r,g,b
-
-	dp[0][0] = rgb[0];
-	dp[0][1] = rgb[1];
-	dp[0][2] = rgb[2];
-
-	for (i = 1; i < num; ++i)
-	{
-		scanf_s("%d %d %d", &rgb[0], &rgb[1], &rgb[2]);
-		dp[i][0] = min(dp[i - 1][1], dp[i - 1][2]) + rgb[0];
-		dp[i][1] = min(dp[i - 1][0], dp[i - 1][2]) + rgb[1];
-		dp[i][2] = min(dp[i - 1][0], dp[i - 1][1]) + rgb[2];
+	for(int i = 1; i <= N; i++){
+		for(int j = 0; j < 3; j++){
+			cin >> arr[i][j];
+		}
 	}
 
-	printf("%d", min(min(dp[num - 1][0], dp[num - 1][1]), dp[num - 1][2]));
+	for(int i=1; i<=N; i++){
+		dp[i][0] = min(dp[i-1][1], dp[i-1][2]) + arr[i][0]; // r로 칠한 경우
+		dp[i][1] = min(dp[i-1][0],dp[i-1][2]) + arr[i][1]; // g로 칠한 경우
+		dp[i][2] = min(dp[i-1][0], dp[i-1][1]) + arr[i][2]; // b로 칠한 경우
+	}
+	cout << min(min(dp[N][0], dp[N][1]), dp[N][2]) << endl;
 
+	return 0;
+}
 
 }
