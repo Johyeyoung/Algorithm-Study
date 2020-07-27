@@ -1,28 +1,27 @@
-#include<stdio.h>
-int arr[1001];
-int dp[1001];
+#include <iostream>
+#include <algorithm>
+using namespace std;
 
 int main() {
-	int N;
-	int i, j;
-	
-	int max = 0;
-	scanf_s("%d", &N);
+	int N, result = -1; cin >> N;
+	int arr[1001];
+	int dp[1001];
 
-	for (i = 0; i < N; i++)
-	{
-		dp[i] = 1; //ÃÊ±â°ªÀ» 1·Î ÁöÁ¤
-		
-		scanf_s("%d", &arr[i]);
-		for (j = 0; j < i; j++)
-		{
-			if (arr[i] > arr[j] && dp[i] < dp[j]+1)
-				dp[i]++;
+	for(int i = 0; i < N; i++) cin >> arr[i];
+
+	for(int i = 0; i < N; i++){
+		dp[i] = 1;
+		for(int j = 0; j < i; j++){
+			if(arr[j] < arr[i] && dp[j] + 1 > dp[i]){
+				dp[i] = dp[j] + 1;
+			}
 		}
-
-		
-		if (max < dp[i])
-			max = dp[i];
+		result = max(result, dp[i]);
 	}
-	printf("%d", max);
-} 
+
+	// for(int i = 0; i < N; i++) cout << dp[i] << " ";
+	// cout << endl;
+	cout << result << endl;
+
+	return 0;
+}
