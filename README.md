@@ -8,12 +8,14 @@
 
 <br/>
 
-### *** FragmentMain.java,  fragment_main.xml***
+*FragmentMain.java/ fragment_main.xml*
 
 #### 1. 일반 검색   
 : **TextEdit**의 값을 넘겨주어 상호명 또는 메뉴명으로 검색을 가능하게 한다.
 
-#### 2. 설정 검색    
+
+#### 2. 설정 검색  
+*SearchListActivity.java*
 ![image](https://user-images.githubusercontent.com/47061005/99806718-c7ee7080-2b81-11eb-9dbb-41a65f21f08b.png)
 
 : **SeekBar**를 이용하여 필터를 생성해 성분과 관련해 제한된 값을 조정하고 검색할 수 있도록 한다.
@@ -30,7 +32,7 @@
 
 <br/>
 
-### *** ProductDetailPage.java***
+*ProductDetailPage.java*
 
 #### 1.  상품 상세 정보  
 : 상품 상세 설명 페이지에서는 상품과 관련된 정보로 
