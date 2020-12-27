@@ -23,6 +23,7 @@ while lt<=rt:
     
     # 임시 값으로 담아둔 곳에서 가장 작은것을 선택해 수열(res)로 만든다
     tmp.sort()
+    # -----예외처리----------
     if len(tmp)==0:
         break;
     else:
