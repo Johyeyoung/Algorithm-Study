@@ -16,7 +16,7 @@ body.sort(reverse=True)
 largest=0
 cnt=0
 for x, y in body:
-    if y>largest:
+    if y>largest: # 몸무게가 앞의 기록의 최대보다 크면 
         largest=y
         cnt+=1
 print(cnt)
