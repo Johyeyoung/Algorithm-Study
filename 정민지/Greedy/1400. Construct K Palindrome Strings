@@ -1,0 +1,18 @@
+from collections import Counter
+
+class Solution(object):
+    def canConstruct(self, s, k):
+        if k > len(s):
+            return False
+        elif k == len(s):
+            return True
+        else:
+            c = Counter(s)
+            odd = 0
+            for s, v in c.items():
+                if v % 2 == 1:
+                    odd += 1
+            if odd <= k:
+                return True
+            else:
+                return False
