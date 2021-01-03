@@ -59,12 +59,12 @@ print(res)
 #                  res : dvd의 최소 용량의 크기
 #…………………………………………………………………………………………………………………………………………………………………………………………
 
-def Count(capacity):
+def Count(capacity): # 탐색할 용량
     cnt=1
     sum=0
     for x in Music:
-        if sum+x>capacity:
-            cnt+=1
+        if sum+x>capacity: # 용량을 초과하면 다른 dvd에 저장
+            cnt+=1 # dvd 개수 += 1
             sum=x
         else:
             sum+=x
@@ -73,7 +73,7 @@ def Count(capacity):
 # ---------------------------- 정보 입력받기 ----------------------------
 n, m=map(int, input().split()) # n: 들어오는 곡의 개수/ m: 저장할 dvd의 개수
 Music=list(map(int, input().split()))
-maxx=max(Music)
+maxx=max(Music) #  dvd의 용량은 적어도 1곡은 들어가야하니까 가장 큰 용량의 노래를 담을 수 있어야됨
 
 
 # ---------------------------- 이분 탐색 시작 --------------------------
@@ -85,6 +85,8 @@ res=0 # 예비 정답들 조건을 만족하되 가장 최소를 찾을거라서
 
 while lt<=rt:
     mid=(lt+rt)//2
+    # 가장 큰 곡도 한곡은 들어가야하니까 mid>=maxx
+    # dvd의 개수가 m개보다는 적어야
     if mid>=maxx and Count(mid)<=m:
         res=mid
         rt=mid-1 
