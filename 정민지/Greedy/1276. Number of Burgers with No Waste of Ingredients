@@ -1,0 +1,16 @@
+import numpy as np
+
+class Solution(object):
+    def numOfBurgers(self, tomatoSlices, cheeseSlices):
+        a = np.array([[4, 2], [1, 1]])
+        b = np.array([tomatoSlices, cheeseSlices])
+        x = np.linalg.solve(a, b)
+        for i in x:
+            if int(i) != i or i < 0:
+                return []
+        else:    
+            return [int(i) for i in x]
+        
+
+# 4x + 2y = tomatoSlices
+# x + y = cheeseSlices
