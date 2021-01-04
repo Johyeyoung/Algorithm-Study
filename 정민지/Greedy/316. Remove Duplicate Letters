@@ -1,0 +1,23 @@
+from collections import Counter
+
+class Solution(object):
+    def removeDuplicateLetters(self, s):
+        stack = []
+        result = ""
+        seen = set()
+        c = Counter(s)
+        
+        for i in range(len(s)):
+            c[s[i]] -= 1
+            if s[i] in seen:
+                continue
+                
+            while (stack) and (s[i] < stack[-1]) and (0 < c[stack[-1]]):
+                seen.remove(stack.pop())
+            
+            stack.append(s[i])
+            seen.add(s[i])
+            #print(stack)
+            
+                    
+        return ''.join(stack)
