@@ -1,0 +1,5 @@
+# 1번 풀이
+for i in R:
+  if R[i] != R[-1-i]:
+    return false
+else return true
