@@ -3,11 +3,28 @@
 #            (지점 설정) a[i+dx[k]][j+dy[k] : (i, j)번째 지점의 상하좌우 탐색
 #…………………………………………………………………………………………………………………………………………………………………………………………
 
-for i in R:
-  if R[i] != R[-1-i]:
-    return false
-else return true
-
+n=int(input())
+for i in range(1, n+1):
+    str=input()
+    str=str.upper()
+    for j in range(len(str)//2): # 하나하나 for문 돌면서 원소
+        if str[j]!=str[-1-j]: 
+            print("#%d NO" %i)
+            break
+    else:
+        print("#%d YES" %i)
+        
+        
+#-------------문자열 뒤집기 풀이-------------
+n=int(input())
+for i in range(1, n+1):
+    str=input()
+    str=str.upper()
+    if str == str[::-1]: # 문자열 뒤집기
+        print("#%d YES" %i)
+    else:
+        print("#%d NO" %i)
+        
 
 #¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
 #                     2번. 숫자만 추출 (1차원 배열)
@@ -36,10 +53,10 @@ print(cnt)
 #…………………………………………………………………………………………………………………………………………………………………………………………
 
 a=list(range(21))
-for _ in range(10):
-    s, e=map(int, input().split())
-    for i in range((e-s+1)//2):
-        a[s+i], a[e-i]=a[e-i], a[s+i]
+for _ in range(10): # 그냥 10번 입력받는거니까 변수없이 for문
+    s, e=map(int, input().split()) # 구간의 처음과 끝이 주어짐 이 안에 있는 숫자는 다 교환
+    for i in range((e-s+1)//2): # 2~7이면 총 (7-2)+1//2 = 3번
+        a[s+i], a[e-i]=a[e-i], a[s+i]  # swap하기
 a.pop(0)
 for x in a:
     print(x, end=' ')
@@ -59,9 +76,10 @@ a=list(map(int, input().split()))
 m=int(input())
 b=list(map(int, input().split()))
 
-p1=p2=0
+p1=p2=0 # 각 배열의 인덱스
 c=[]
-while p1<n and p2<m:
+# 어차피 정렬된 두 배열이 주어지니까 합쳐서 sort하지말고 n만큼 한번만 for문돌기
+while p1<n and p2<m: # 두 배열 중 하나가 끝나기 전까지 각각의 앞자리 중 작은걸 리스트에 update
     if a[p1]<b[p2]:
         c.append(a[p1])
         p1+=1
