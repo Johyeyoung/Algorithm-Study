@@ -103,20 +103,21 @@ n, m=map(int, input().split())
 a=list(map(int, input().split()))
 lt=0
 rt=1
-tot=a[0]
+tot=a[0] # 지금까지 더한 값
 cnt=0
+# 배열을 돌면서 m의 값이 나올 수 있는 연속된 수의 합 찾기
 while True:
     if tot<m: # 아직 더 더해도됨
-        if rt<n: 
+        if rt<n: #오른쪽으로 pointer이동
             tot+=a[rt]
             rt+=1
-        else:
+        else: # 배열이 끝나면 stop
             break
-    elif tot==m: # 이제 과거원소버리고 lt +=1
+    elif tot==m: # m이되는 수의 합 찾음 이제 과거 원소버리기(lt +=1)
         cnt+=1
         tot-=a[lt]
         lt+=1
-    else: # 과거 원소버리기 너무
+    else: # m보다 너무 커져버림 과거 원소버리기(lt +=1)
         tot-=a[lt]
         lt+=1
 print(cnt)
