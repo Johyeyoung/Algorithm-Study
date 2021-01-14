@@ -3,8 +3,11 @@
 # 사용하는 원소는 
 def solution(N, number):
     # dy[idx] : idx개수의 N으로 만들수있는 모든 경우의 수 
+    # base 조건 N==1의 경우 먼저 채우기: 인덱스 1부터하기위해 []-공백 채우기
     dy = [[],[N]]  # dy배열에 N을 idx개수로 표현할 수 있는 숫자들을 리스트를 담는다 
-    if number == N: return 1
+    if number == N: return 1 
+    
+    # 나머지 dy를 채우는데 문제 조건상 N의 사용횟수는 최대 8개!
     for i in range(2, 9):
         case_set = [int(str(N)*i)]
         # 랜선자르기 문제처럼 3 = (1,2), (2,1) 조각을 내서
@@ -22,3 +25,6 @@ def solution(N, number):
             return i
         dy.append(case_set) # dy배열에 list 정보를 저장 
     return -1
+
+
+# top-down 보다 bottom-up이 어울리는 이유 N의 최소한의 개수로 나타내라니까 낮은 범위부터 채우게
