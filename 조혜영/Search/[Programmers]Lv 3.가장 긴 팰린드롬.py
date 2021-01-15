@@ -7,3 +7,8 @@ def solution(s):
                 if max < sub_len:
                     max = sub_len
     return max
+
+
+
+###################################DP 가능
+# https://sewonkimm.github.io/algorithm/2019/09/19/longPal.html
