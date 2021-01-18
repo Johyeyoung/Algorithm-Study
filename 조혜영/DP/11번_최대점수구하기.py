@@ -17,9 +17,9 @@ n, m=map(int, input().split())
 # dp배열 선언 (dy[j]: j분 동안 얻을 수 있는 최대 점수)
 dy=[0]*(m+1);
 
-for i in range(n):
-    # ps: 문제의 배점/ pt: 소요되는 시간
-    ps, pt=map(int, input().split()) 
+for i in range(n): # 총 n개의 문제 경우의 수 다 고려할때까지 
+    
+    ps, pt=map(int, input().split()) # ps: 문제의 배점/ pt: 소요되는 시간
     
     ''' 
     <뒤에서부터 dy배열을 채우면 똑같은 문제 중복 방지 가능!!>
@@ -30,3 +30,12 @@ for i in range(n):
     for j in range(m, pt-1, -1): # 뒤에서부터 dy를 update한다.
         dy[j]=max(dy[j], dy[j-pt]+ps)
 print(dy[m])
+
+
+
+# solution 2)
+# : 2차원 배열을 이용하여 dy[i]가 update되는 과정을 다 기록하는것임 
+# 그렇게 해서 해당 원소가 포함되지 않았을때의 최대 값이 dy에 기록됐으니까 
+# 기존의 dy[i]참조하여 update하는 방식에서 참조하는 dy[i]의 
+# 행은 풀었다고 추가시킬 문제/ 열은 주어진 시간 
+
