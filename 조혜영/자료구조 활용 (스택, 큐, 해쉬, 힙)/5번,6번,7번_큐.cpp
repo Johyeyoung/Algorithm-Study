@@ -30,7 +30,7 @@ int main(){
 
   vector<int> prince(n+1); 
   
-  // 마지막 왕자 한명 남을때까지 돌기
+ 	// 마지막 왕자 한명 남을때까지 돌기
 	while(1){
 		p++;
 		if(p>n) p=1;
@@ -69,9 +69,9 @@ int main(){
 	
   vector<int> prince(n+1); //왕자를 집어넣을 Queue 
 	while(1){
-    // k를 외치는 왕자가 나타나기 전까지 계속 앞에서 선出 후入 
+    		// k를 외치는 왕자가 나타나기 전까지 계속 앞에서 선出 후入 
 		for(i=1; i<=k; i++){
-      // 이건 큐자료형이 아니라 배열이므로 Queue에 있는(prince[pos]==0)대상으로만 k번째 계산하기임 
+     			// 이건 큐자료형이 아니라 배열이므로 Queue에 있는(prince[pos]==0)대상으로만 k번째 계산하기임 
 			while(1){
 				pos++;
 				if(pos>n) pos=1; // 다시 인덱스를 원점으로 
@@ -83,7 +83,8 @@ int main(){
 		if(cnt==n-1) break; // 마지막 한명 남으면 구출하기!
 	}
 
-  // 공주를 구하러갈 왕자(prince[i]==0)를 찾아 출력!
+	// 결과 출력 : 
+  	// 공주를 구하러갈 왕자(prince[i]==0)를 찾아 출력!
 	for(i=1; i<=n; i++){
 		if(prince[i]==0){
 			printf("%d\n", i);
@@ -108,7 +109,7 @@ import sys
 from collections import deque
 sys.stdin=open("input.txt", "r")
 n, m=map(int, input().split())
-Q=[(pos, val) for pos, val in enumerate(list(map(int, input().split())))]
+Q=[(pos, val) for pos, val in enumerate(list(map(int, input().split())))] # 인덱스의 정보도 같이 맵핑하여 저장                       
 Q=deque(Q)
 cnt=0
 while True:
@@ -122,8 +123,40 @@ while True:
             break
 
 
-
-
+#include<stdio.h>
+#include<vector>
+#include<algorithm>		   
+using namespace std;
+int main(){
+	freopen("input.txt", "rt", stdin);
+	int n, m, p=0, i, bp=0, cnt=0;
+	scanf("%d %d", &n, &m); // n:환자의 수 m: 몇번째로 진료받는지 구해야할 대상인 m번째 환자
+	
+  	vector<int> person(n+1); // 환자를 집어넣을 Queue 
+ 	map<int, int>
+	for(i = 0; i < n; i++){
+	    scanf("%d %d", &n, &m);
+	    person.
+	}
+	pos = 0;
+	while(1){
+	   pos += 1;
+	   if (pos >= n) pos = 0;
+	   if (person[pos] != 0) { // k번째 왕자가 나오면 해당 왕자를 queue에서 제거(princee[p]=1)하고 
+	   	int max = *max_element(person.begin(), person.end());	
+	   	if (person[pos] == max) {
+			person[pos] = 0;
+		}
+		else { 
+			person[pos] = 0;
+		}
+		if    
+	   }	
+	
+	
+	}
+}
+	
 
 
 
