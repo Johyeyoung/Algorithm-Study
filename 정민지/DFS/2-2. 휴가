@@ -1,0 +1,53 @@
+import sys
+
+
+#sys.stdin = open("input.txt", "rt")
+
+# 나의 풀이
+# - 문제점 : t[L]날에(현재) 무조건 상담을 하는 것으로 간주하고 품
+# 예를 들어, 오늘 상담을 하지 않고 다음날 상담을 하여 넘어가는 것이 더 이득인데
+# 무조건 오늘 상담을 하고 넘어가므로 최대값이 나오지 않음
+
+# def DFS(L, cost):
+#     print("L: ", L)
+#     print("cost: ", cost)
+#     global res
+#     if n == L+t[L]:
+#         if res < cost+p[L]:
+#             res = cost+p[L]
+#
+#     elif n < L+t[L]:
+#         if res < cost:
+#             res = cost
+#
+#     else:
+#         DFS(L+t[L], cost+p[L])
+
+# 강의 풀이
+def DFS(L, sum):
+    global res
+
+    if L == n+1:
+        if res < sum:
+            res = sum
+    else:
+        if L+t[L] <= n+1:   # 현재 상담을 할 때
+            DFS(L+t[L], sum+p[L])
+        DFS(L+1, sum)   # 현재 상담을 하지 않을 때
+
+
+
+if __name__ == "__main__":
+    n = int(input())
+    res = 0
+    t = []
+    p = []
+    for _ in range(n):
+        ti, pi = map(int, input().split())
+        t.append(ti)
+        p.append(pi)
+
+    t.insert(0, 0)
+    p.insert(0, 0)
+    DFS(1, 0)
+    print(res)
