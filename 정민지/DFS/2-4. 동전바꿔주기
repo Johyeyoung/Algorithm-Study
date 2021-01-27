@@ -1,0 +1,32 @@
+import sys
+
+
+#sys.stdin = open("input.txt", "rt")
+
+# 강의 풀이
+def DFS(L, sum):
+    global cnt
+    if t < sum:
+        return
+    
+    if L == k:
+        if sum == t:
+            cnt += 1
+
+    else:
+        for i in range(cn[L] + 1):
+            DFS(L + 1, sum + (cv[L] * i))
+
+if __name__ == "__main__":
+    t = int(input())
+    k = int(input())
+    cnt = 0
+    cv = []
+    cn = []
+    for _ in range(k):
+        p, n = map(int, input().split())
+        cv.append(p)
+        cn.append(n)
+
+    DFS(0, 0)
+    print(cnt)
