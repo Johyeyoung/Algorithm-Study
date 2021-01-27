@@ -1,0 +1,52 @@
+import sys
+
+
+#sys.stdin = open("input.txt", "rt")
+
+# 나의 풀이 -> 일부 문제에서 시간초과
+# def DFS(L, sum, water):
+#     global possible
+#     #print("L: ", L, "sum: ", sum, "water: ", water, "possible: ")
+#     if sum < 0:
+#         return
+#
+#     if sum == water:
+#         possible = True     # 물의 무게를 달 수 있는 방법 여러가지가 나옴 -> 한 번이라도 충족하면 됨
+#         return              # => true인 경우 빠져나옴
+#
+#     if possible:
+#         return
+#
+#     if L == k:
+#         return
+#
+#     else:
+#         DFS(L+1, sum+lst[L], water)  # 물의 반대쪽편에 추 놓을 때
+#         DFS(L+1, sum-lst[L], water)  # 물과 같은 편에 추 놓을 때
+#         DFS(L+1, sum, water) # 추를 저울에 놓지 않을 때
+
+
+# 강의 풀이
+def DFS(L, sum):
+    if L == k:
+        if 0 < sum <= s:
+            res.add(sum)    # 내 풀이에서 possible 변수와 동일한 역할 => 여기서 set으로 물의 무게를 집어넣음
+    else:
+        DFS(L + 1, sum + lst[L])
+        DFS(L + 1, sum - lst[L])
+        DFS(L + 1, sum)
+
+if __name__ == "__main__":
+    k = int(input())
+    cnt = 0
+    lst = list(map(int, input().split()))
+    res = set()
+    s = sum(lst)
+    # for i in range(1, sum(lst)+1):
+    #     possible = False
+    #     DFS(0, 0, i)
+    #     if not possible:
+    #         cnt += 1
+    DFS(0, 0)
+
+    print(s-len(res))
