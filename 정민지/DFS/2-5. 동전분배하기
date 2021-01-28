@@ -1,0 +1,30 @@
+import sys
+
+
+#sys.stdin = open("input.txt", "rt")
+
+def DFS(L, sumA, sumB, sumC):
+    global dis
+
+    if L == n:
+        if (sumA != sumB) and (sumB != sumC) and (sumC != sumA):
+            res = max(sumA, sumB, sumC) - min(sumA, sumB, sumC)
+            if res < dis:
+                dis = res
+    else:
+        DFS(L+1, sumA+cv[L], sumB, sumC)
+        DFS(L+1, sumA, sumB+cv[L], sumC)
+        DFS(L+1, sumA, sumB, sumC+cv[L])
+
+
+if __name__ == "__main__":
+    n = int(input())
+    dis = float('inf')
+    cv = []
+
+    for _ in range(n):
+        p = int(input())
+        cv.append(p)
+
+    DFS(0, 0, 0, 0)
+    print(dis)
