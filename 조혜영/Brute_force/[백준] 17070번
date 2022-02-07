@@ -1,0 +1,39 @@
+n = int(input())
+
+board = [list(map(int, input().split( ))) for _ in range(n)]
+dx = [1, 1, 0]
+dy = [1, 0, 1]
+cnt = 0
+def dfs(Lx, Ly, Rx, Ry):
+    global cnt    
+    if (Lx == n-1 and Ly == n-1) or (Rx == n-1 and Ry == n-1):
+        cnt += 1
+        
+    else:
+        possible = []
+        if Lx == Rx and Ly+1 == Ry:  # 세로
+            possible.append((Lx, Ly+1, Rx, Ry+1))
+            possible.append((Lx, Ly+1, Rx+1, Ry+1))
+                
+        elif Ly == Ry and Lx+1 == Rx: # 가로
+            possible.append((Lx+1, Ly, Rx+1, Ry))
+            possible.append((Lx+1, Ly, Rx+1, Ry+1))
+                
+        elif Ly+1 == Ry and Lx+1 == Rx: #대각선인 경우
+            possible.append((Lx+1, Ly+1, Rx+1, Ry))
+            possible.append((Lx+1, Ly+1, Rx, Ry+1))
+            possible.append((Lx+1, Ly+1, Rx+1, Ry+1))
+
+        for tmp in possible:
+            tmp_Lx, tmp_Ly, tmp_Rx, tmp_Ry = tmp[0], tmp[1], tmp[2], tmp[3]
+            
+            if max(tmp) < n and min(tmp) >= 0:
+                check = [board[tmp_Ry][tmp_Rx], board[tmp_Ly][tmp_Lx]]
+                if Rx+1 == tmp_Rx and Ry+1== tmp_Ry:
+                    check += [board[tmp_Ry-1][tmp_Rx], board[tmp_Ry][tmp_Rx-1]]
+                if 1 not in check:
+                    dfs(tmp_Lx, tmp_Ly, tmp_Rx, tmp_Ry)
+            
+
+dfs(0, 0, 1, 0)
+print(cnt)
