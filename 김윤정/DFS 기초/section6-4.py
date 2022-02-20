@@ -8,9 +8,9 @@ def DFS(L, sum):
         if sum == (total-sum):
             print("YES")
             sys.exit(0)
-        else:
-            DFS(L+1, sum+a[L])
-            DFS(L+1, sum)
+    else:
+        DFS(L+1, sum+a[L])
+        DFS(L+1, sum)
 
 
 
